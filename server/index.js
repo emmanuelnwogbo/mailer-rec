@@ -59,15 +59,17 @@ app.get('/', (req, res) => {
 
 app.use(contact);
 
-console.log(process.env.db)
+console.log(process.env.DB)
 
-mongoose.connect('process.env.db', {
+mongoose.connect(process.env.DB, {
   //mongodb://127.0.0.1:27017/mailerrec ===> development
 
-    useNewUrlParser: true,
+    /*useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true 
+    useUnifiedTopology: true */
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
 }).then(() => {
     console.log('connected to database');
 

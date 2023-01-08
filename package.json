@@ -45,7 +45,7 @@
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
     "mongodb": "^3.6.0",
-    "mongoose": "^5.10.0",
+    "mongoose": "^6.5.3",
     "nodemailer": "^6.7.2",
     "protonmail-api": "^2.2.0",
     "regenerator-runtime": "^0.13.11",

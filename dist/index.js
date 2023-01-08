@@ -54,13 +54,15 @@ app.get('/', function (req, res) {
   res.send('');
 });
 app.use(contact);
-console.log(process.env);
-_mongoose["default"].connect('mongodb://127.0.0.1:27017/mailerrec', {
+console.log(process.env.DB);
+_mongoose["default"].connect(process.env.DB, {
   //mongodb://127.0.0.1:27017/mailerrec ===> development
 
-  useNewUrlParser: true,
+  /*useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
+  useUnifiedTopology: true */
+  useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(function () {
   console.log('connected to database');

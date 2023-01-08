@@ -1,6 +1,5 @@
 import express from 'express';
 
-const { body } = require('express-validator');
 const router = express.Router();
 const contact = router;
 
