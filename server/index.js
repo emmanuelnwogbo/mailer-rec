@@ -61,7 +61,7 @@ app.use(contact);
 
 console.log(process.env.db)
 
-mongoose.connect('mongodb://a9a6E4iw:2N5v5dwuNitkwV7@docdb-2023-01-08-03-34-19.cluster-cw45m5sfhvgk.eu-west-3.docdb.amazonaws.com:27017/?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false', {
+mongoose.connect('process.env.db', {
   //mongodb://127.0.0.1:27017/mailerrec ===> development
 
     useNewUrlParser: true,
