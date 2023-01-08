@@ -61,7 +61,7 @@ app.use(contact);
 
 console.log(process.env)
 
-mongoose.connect(`${process.env.db}`, {
+mongoose.connect(process.env.db, {
   //mongodb://127.0.0.1:27017/mailerrec ===> development
 
     useNewUrlParser: true,
