@@ -14,7 +14,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 require("dotenv").config();
 var app = (0, _express["default"])();
-var allowlist = ['https://osnoanix.com/', 'https://www.osnoanix.com/'];
+var allowlist = ['https://osnoanix.com', 'https://www.osnoanix.com'];
 var corsOptionsDelegate = function corsOptionsDelegate(req, callback) {
   var corsOptions;
   var isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
@@ -63,7 +63,8 @@ _mongoose["default"].connect(process.env.DB, {
   useFindAndModify: false,
   useUnifiedTopology: true */
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  socketTimeoutMS: 1000
 }).then(function () {
   console.log('connected to database');
   server.listen(PORT, /*#__PURE__*/function () {

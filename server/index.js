@@ -11,7 +11,7 @@ import routes from './routes';
 
 const app = express();
 
-const allowlist = ['https://osnoanix.com/', 'https://www.osnoanix.com/'];
+const allowlist = ['https://osnoanix.com', 'https://www.osnoanix.com'];
 
 const corsOptionsDelegate = (req, callback) => {
   let corsOptions;
@@ -69,9 +69,11 @@ mongoose.connect(process.env.DB, {
     useFindAndModify: false,
     useUnifiedTopology: true */
     useNewUrlParser: true, 
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    socketTimeoutMS: 1000
 }).then(() => {
     console.log('connected to database');
+
 
     server.listen(PORT, async (error) => {
       if (error) {
