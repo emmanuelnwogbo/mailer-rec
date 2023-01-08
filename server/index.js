@@ -11,22 +11,19 @@ import routes from './routes';
 
 const app = express();
 
-const allowlist = ['https://osnoanix.com', 'https://www.osnoanix.com'];
+const whitelist = ['https://osnoanix.com', 'https://www.osnoanix.com'];
 
-const corsOptionsDelegate = (req, callback) => {
-  let corsOptions;
-
-  let isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
-
-  if (isDomainAllowed) {
-      corsOptions = { origin: true }
-  } else {
-      corsOptions = { origin: false }
-  }
-  callback(null, corsOptions)
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+  credentials: true,
 }
-
-app.use(cors(corsOptionsDelegate));
+app.use(cors(corsOptions))
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
