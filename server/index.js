@@ -59,7 +59,9 @@ app.get('/', (req, res) => {
 
 app.use(contact);
 
-mongoose.connect('mongodb://127.0.0.1:27017/mailerrec', {
+console.log(process.env)
+
+mongoose.connect(`${process.env.db}`, {
   //mongodb://127.0.0.1:27017/mailerrec ===> development
 
     useNewUrlParser: true,

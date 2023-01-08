@@ -54,6 +54,7 @@ app.get('/', function (req, res) {
   res.send('');
 });
 app.use(contact);
+console.log(process.env);
 _mongoose["default"].connect('mongodb://127.0.0.1:27017/mailerrec', {
   //mongodb://127.0.0.1:27017/mailerrec ===> development
 
