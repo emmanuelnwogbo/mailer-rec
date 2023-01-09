@@ -11,16 +11,22 @@ import routes from './routes';
 
 const app = express();
 
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://osnoanix.com");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    /*if (req.method === 'OPTIONS') {
+    if (req.method === 'OPTIONS') {
       //res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
       return res.status(200).json({});
-    }*/
+    }
     next();
-  });
+  });*/
+
+  app.use(cors({
+    origin: 'https://osnoanix.com', // use your actual domain name (or localhost), using * is not recommended
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept'],
+}))
   
 
 /*const whitelist = ['https://osnoanix.com', 'https://www.osnoanix.com'];
