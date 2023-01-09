@@ -23,7 +23,7 @@ const app = express();
   });*/
 
   app.use(cors({
-    origin: 'https://osnoanix.com', // use your actual domain name (or localhost), using * is not recommended
+    origin: '*', // use your actual domain name (or localhost), using * is not recommended
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept'],
 }))

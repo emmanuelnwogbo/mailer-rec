@@ -27,7 +27,7 @@ var app = (0, _express["default"])();
   });*/
 
 app.use((0, _cors["default"])({
-  origin: 'https://osnoanix.com',
+  origin: '*',
   // use your actual domain name (or localhost), using * is not recommended
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept']
