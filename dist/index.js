@@ -62,8 +62,7 @@ app.get('/', function (req, res) {
   res.sendFile(_path["default"].join(__dirname, '/public/index.html'));
 });
 app.use(contact);
-console.log('DB', process.env.DB);
-_mongoose["default"].connect('mongodb://127.0.0.1:27017/mailerrec', {
+_mongoose["default"].connect(process.env.DB, {
   //mongodb://127.0.0.1:27017/mailerrec ===> development
 
   /*useNewUrlParser: true,
