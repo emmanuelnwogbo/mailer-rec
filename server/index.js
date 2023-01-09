@@ -14,7 +14,6 @@ const app = express();
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://osnoanix.com");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     if (req.method === 'OPTIONS') {
       res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
@@ -24,7 +23,7 @@ app.use(function(req, res, next) {
   });
   
 
-const whitelist = ['https://osnoanix.com', 'https://www.osnoanix.com'];
+/*const whitelist = ['https://osnoanix.com', 'https://www.osnoanix.com'];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -36,7 +35,7 @@ const corsOptions = {
   },
   credentials: true,
 }
-app.use(cors(corsOptions))
+app.use(cors(corsOptions))*/
 
 app.use(express.urlencoded({
   extended: false
