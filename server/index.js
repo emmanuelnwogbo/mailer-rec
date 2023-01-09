@@ -4,6 +4,7 @@ import express from "express";
 import http from "http";
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import path from 'path';
 
 import mongoose from 'mongoose';
 
@@ -11,7 +12,9 @@ import routes from './routes';
 
 const app = express();
 
-/*app.use(function(req, res, next) {
+app.use(express.static('public'));
+
+app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://osnoanix.com");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
@@ -20,13 +23,13 @@ const app = express();
       return res.status(200).json({});
     }
     next();
-  });*/
+  });
 
-  app.use(cors({
+/*app.use(cors({
     origin: '*', // use your actual domain name (or localhost), using * is not recommended
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept'],
-}))
+}))*/
   
 
 /*const whitelist = ['https://osnoanix.com', 'https://www.osnoanix.com'];
@@ -59,15 +62,15 @@ const {
 const PORT = process.env.PORT || 8080;
 const server = http.createServer(app);
 
-app.get('/', (req, res) => {
-  res.send('')
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 app.use(contact);
 
 console.log('DB', process.env.DB)
 
-mongoose.connect(process.env.DB, {
+mongoose.connect('mongodb://127.0.0.1:27017/mailerrec', {
   //mongodb://127.0.0.1:27017/mailerrec ===> development
 
     /*useNewUrlParser: true,

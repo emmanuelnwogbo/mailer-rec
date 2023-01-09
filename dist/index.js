@@ -6,6 +6,7 @@ var _express = _interopRequireDefault(require("express"));
 var _http = _interopRequireDefault(require("http"));
 var _cors = _interopRequireDefault(require("cors"));
 var _bodyParser = _interopRequireDefault(require("body-parser"));
+var _path = _interopRequireDefault(require("path"));
 var _mongoose = _interopRequireDefault(require("mongoose"));
 var _routes = _interopRequireDefault(require("./routes"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -14,24 +15,23 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 require("dotenv").config();
 var app = (0, _express["default"])();
+app.use(_express["default"]["static"]('public'));
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://osnoanix.com");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  if (req.method === 'OPTIONS') {
+    //res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    return res.status(200).json({});
+  }
+  next();
+});
 
-/*app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://osnoanix.com");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    if (req.method === 'OPTIONS') {
-      //res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-      return res.status(200).json({});
-    }
-    next();
-  });*/
-
-app.use((0, _cors["default"])({
-  origin: '*',
-  // use your actual domain name (or localhost), using * is not recommended
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept']
-}));
+/*app.use(cors({
+    origin: '*', // use your actual domain name (or localhost), using * is not recommended
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept'],
+}))*/
 
 /*const whitelist = ['https://osnoanix.com', 'https://www.osnoanix.com'];
 
@@ -59,11 +59,11 @@ var contact = _routes["default"].contact;
 var PORT = process.env.PORT || 8080;
 var server = _http["default"].createServer(app);
 app.get('/', function (req, res) {
-  res.send('');
+  res.sendFile(_path["default"].join(__dirname, '/public/index.html'));
 });
 app.use(contact);
 console.log('DB', process.env.DB);
-_mongoose["default"].connect(process.env.DB, {
+_mongoose["default"].connect('mongodb://127.0.0.1:27017/mailerrec', {
   //mongodb://127.0.0.1:27017/mailerrec ===> development
 
   /*useNewUrlParser: true,
