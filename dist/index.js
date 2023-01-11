@@ -59,7 +59,7 @@ var contact = _routes["default"].contact;
 var PORT = process.env.PORT || 8080;
 var server = _http["default"].createServer(app);
 app.get('/', function (req, res) {
-  res.sendFile(_path["default"].join(__dirname, '/public/index.html'));
+  res.sendFile(_path["default"].join(__dirname, '../public/index.html'));
 });
 app.use(contact);
 _mongoose["default"].connect(process.env.DB, {

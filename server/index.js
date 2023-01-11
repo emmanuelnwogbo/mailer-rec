@@ -52,7 +52,6 @@ app.use(express.urlencoded({
 }));
 
 app.use(express.json());
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -63,7 +62,7 @@ const PORT = process.env.PORT || 8080;
 const server = http.createServer(app);
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '/public/index.html'));
+    res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 app.use(contact);

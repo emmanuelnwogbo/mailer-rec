@@ -14,7 +14,7 @@ contact.post('/api/contact', async (req, res) => {
                 message: "message created",
                 contact
             });
-        } catch {
+        } catch(e) {
             res.status(400).send(e);
         }
 });

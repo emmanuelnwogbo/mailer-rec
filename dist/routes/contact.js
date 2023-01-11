@@ -33,7 +33,7 @@ contact.post('/api/contact', /*#__PURE__*/function () {
         case 7:
           _context.prev = 7;
           _context.t0 = _context["catch"](1);
-          res.status(400).send(e);
+          res.status(400).send(_context.t0);
         case 10:
         case "end":
           return _context.stop();
