@@ -70,8 +70,7 @@ app.get('/', function(req, res) {
 app.use(contact);
 app.use(services);
 
-mongoose.connect('mongodb://127.0.0.1:27017/mailerrec', {
-  //mongodb://127.0.0.1:27017/mailerrec ===> development
+mongoose.connect(process.env.DB, {
 
     /*useNewUrlParser: true,
     useCreateIndex: true,
