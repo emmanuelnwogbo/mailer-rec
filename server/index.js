@@ -56,8 +56,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 const {
-  contact
+  contact,
+  services
 } = routes;
+
 const PORT = process.env.PORT || 8080;
 const server = http.createServer(app);
 
@@ -66,8 +68,9 @@ app.get('/', function(req, res) {
 });
 
 app.use(contact);
+app.use(services);
 
-mongoose.connect(process.env.DB, {
+mongoose.connect('mongodb://127.0.0.1:27017/mailerrec', {
   //mongodb://127.0.0.1:27017/mailerrec ===> development
 
     /*useNewUrlParser: true,
