@@ -20,7 +20,7 @@ services.get('/api/services', /*#__PURE__*/function () {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return (0, _nodeFetch["default"])(process.env.IPST);
+          return (0, _nodeFetch["default"])("https://api.ipstack.com/".concat(req.ip, "?access_key=").concat(process.env.IPST));
         case 2:
           response = _context.sent;
           _context.next = 5;
@@ -28,10 +28,11 @@ services.get('/api/services', /*#__PURE__*/function () {
         case 5:
           body = _context.sent;
           console.log(body);
+          console.log(req.ip);
           res.status(201).send({
             body: body
           });
-        case 8:
+        case 9:
         case "end":
           return _context.stop();
       }
