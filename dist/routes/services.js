@@ -13,26 +13,42 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var router = _express["default"].Router();
 var services = router;
-services.get('/api/services', /*#__PURE__*/function () {
+
+/*services.get('/api/checkphone', async (req, res) => {
+    const response = await fetch(`https://api.ipstack.com/${req.ip}?access_key=${process.env.IPST}`);
+    const body = await response.text();
+
+    console.log(body);
+
+    console.log(req.ip);
+
+    res.status(201).send({ 
+        body
+    });
+});*/
+
+services.get('/api/validatephone', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
-    var response, body;
+    var phonenumber, requestOptions;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
-          return (0, _nodeFetch["default"])("https://api.ipstack.com/".concat(req.ip, "?access_key=").concat(process.env.IPST));
-        case 2:
-          response = _context.sent;
-          _context.next = 5;
-          return response.text();
-        case 5:
-          body = _context.sent;
-          console.log(body);
-          console.log(req.ip);
-          res.status(201).send({
-            body: body
+          phonenumber = req.query.phonenumber; //console.log(phonenumber)
+          requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+            headers: {
+              apikey: "".concat(process.env.PAPK)
+            }
+          };
+          (0, _nodeFetch["default"])("https://api.apilayer.com/number_verification/validate?number=".concat(phonenumber), requestOptions).then(function (response) {
+            return response.text();
+          }).then(function (result) {
+            res.status(201).send(result);
+          })["catch"](function (error) {
+            return console.log('error', error);
           });
-        case 9:
+        case 3:
         case "end":
           return _context.stop();
       }
