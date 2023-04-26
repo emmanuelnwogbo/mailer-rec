@@ -58,7 +58,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 const {
   contact,
   services,
-  ipos
+  ipos,
+  stock
 } = routes;
 
 const PORT = process.env.PORT || 8080;
@@ -71,6 +72,7 @@ app.get('/', function(req, res) {
 app.use(contact);
 app.use(services);
 app.use(ipos);
+app.use(stock);
 
 mongoose.connect(process.env.DB, {
 

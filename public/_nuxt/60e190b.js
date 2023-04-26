@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[20],{410:function(n,e,t){"use strict";t.r(e);var l={name:"IndexPage",components:{LandingPage:t(345).default}},o=t(42),component=Object(o.a)(l,(function(){return(0,this._self._c)("LandingPage")}),[],!1,null,null,null);e.default=component.exports;installComponents(component,{LandingPage:t(345).default})}}]);
